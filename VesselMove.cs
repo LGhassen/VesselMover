@@ -13,7 +13,7 @@ namespace VesselMover
 
     public static VesselMove Instance;
 
-    public enum MoveModes { Normal = 0, Slow = 1, Fine = 2, Ludicrous = 3 }
+    public enum MoveModes { Normal = 0, Slow = 1, Fine = 2, Ludicrous = 3, UltraLudicrous = 4 }
 
     private MoveModes _moveMode = MoveModes.Normal;
     private bool _moving = false;
@@ -22,7 +22,7 @@ namespace VesselMover
     
     public float MoveHeight = 0;
     private float _hoverAdjust = 0f;
-    private readonly float[] _hoverHeights = new float[] { 35, 15, 5, 3000 };
+    private readonly float[] _hoverHeights = new float[] { 35, 15, 5, 3000, 25000 };
 
     private float HoverHeight
     {
@@ -32,7 +32,7 @@ namespace VesselMover
       }
     }
 
-    private readonly float[] _moveSpeeds = new float[] { 10, 5, 1, 1500 };
+    private readonly float[] _moveSpeeds = new float[] { 10, 5, 1, 1500, 100000 };
 
     private float MoveSpeed
     {
@@ -42,7 +42,7 @@ namespace VesselMover
       }
     }
 
-    private readonly float[] _moveAccels = new float[] { 10, 1, 0.5f, 750 };
+    private readonly float[] _moveAccels = new float[] { 10, 1, 0.5f, 750, 20000 };
 
     private float MoveAccel
     {
@@ -52,7 +52,7 @@ namespace VesselMover
       }
     }
 
-    private readonly float[] _rotationSpeeds = new float[] { 50, 20, 10, 50 };
+    private readonly float[] _rotationSpeeds = new float[] { 50, 20, 10, 50, 100 };
 
     private float RotationSpeed
     {
@@ -72,7 +72,7 @@ namespace VesselMover
     private LineRenderer _debugLr;
     private Vector3 _up;
     private Vector3 _startingUp;
-    private readonly float maxPlacementSpeed = 1050;
+    private readonly float maxPlacementSpeed = 10500;
     private bool _hasRotated = false;
     private float _timeBoundsUpdated = 0;
     private ScreenMessage _moveMessage;
@@ -615,7 +615,7 @@ namespace VesselMover
 
     private void ToggleMoveMode()
     {
-      _moveMode = (MoveModes)(int)Mathf.Repeat((float)_moveMode + 1, 4);
+      _moveMode = (MoveModes)(int)Mathf.Repeat((float)_moveMode + 1, 5);
       ShowModeMessage();
 
       switch (_moveMode)
